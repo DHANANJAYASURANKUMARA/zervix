@@ -12,19 +12,19 @@
     "@auth/prisma-adapter": "^2.11.1",
     "@types/bcryptjs": "^2.4.6",
     "bcryptjs": "^3.0.3",
-    "next": "16.1.6",
+    "next": "15.1.6",
     "next-auth": "^4.24.13",
     "pg": "^8.18.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "@prisma/client": "^7.4.0"
   },
   "devDependencies": {
-    "@prisma/client": "^7.4.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
+    "eslint-config-next": "15.1.6",
     "prisma": "^7.4.0",
     "typescript": "^5"
   }
