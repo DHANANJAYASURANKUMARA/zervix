@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -16,8 +16,8 @@ model User {
   isSeller      Boolean   @default(false)
   role          String    @default("BUYER")
   bio           String?   @default("")
-  skills        String?   @default("[]") // JSON string
-  languages     String?   @default("[]") // JSON string
+  skills        String?   @default("[]")
+  languages     String?   @default("[]")
   country       String?   @default("")
   sellerLevel   String    @default("NEW")
   responseTime  Int?      @default(0)
@@ -35,12 +35,11 @@ model User {
   favorites     Favorite[]
   notifications Notification[]
   sentMessages     Message[]    @relation("SentMessages")
-  conversations    Conversation[] @relation("UserConversations") // Many-to-many implicit? No, db.ts has explicit table logic, but Prisma needs careful relation. 
-                                                                 // db.ts `conversations` has user1Id and user2Id.
-                                                                 // So Conversation model must match that structure.
+  conversations1   Conversation[] @relation("User1Conversations")
+  conversations2   Conversation[] @relation("User2Conversations")
   buyerRequests    BuyerRequest[] @relation("BuyerRequests")
   customOffers     CustomOffer[]  @relation("SellerOffers")
-  customOffersReceived CustomOffer[] @relation("BuyerOffers") // Buyer receives offers
+  customOffersReceived CustomOffer[] @relation("BuyerOffers")
   
   @@map("users")
 }
@@ -61,7 +60,7 @@ model Gig {
   status      String  @default("ACTIVE")
   impressions Int     @default(0)
   clicks      Int     @default(0)
-  ordersCount Int     @default(0) @map("orders") // db.ts uses 'orders' column
+  ordersCount Int     @default(0) @map("orders")
   
   sellerId    String
   seller      User     @relation(fields: [sellerId], references: [id])
@@ -172,17 +171,12 @@ model Conversation {
   lastMessageAt DateTime @default(now())
   createdAt    DateTime  @default(now())
   
-  // Relations to User are tricky with just 2 IDs manually managed.
-  // We can treat them as relation fields if we want Prisma to navigate.
-  // But db.ts defines simple FKs.
-  user1        User      @relation("UserConversations", fields: [user1Id], references: [id]) 
-  // Prisma doesn't support 2 refs seamlessly in array without disambiguating implies.
-  // Let's keep it simple for now, map to table.
+  user1        User      @relation("User1Conversations", fields: [user1Id], references: [id]) 
+  user2        User      @relation("User2Conversations", fields: [user2Id], references: [id]) 
   
   messages     Message[]
   
   @@map("conversations")
-  @@ignore // Ignoring relations check for now or handle user2 manually
 }
 
 model Message {
@@ -217,7 +211,7 @@ model Notification {
   id        String   @id @default(cuid())
   userId    String
   user      User     @relation(fields: [userId], references: [id])
-  type      String   // ORDER, MESSAGE, REVIEW, SYSTEM
+  type      String
   title     String
   message   String
   link      String?  @default("")
