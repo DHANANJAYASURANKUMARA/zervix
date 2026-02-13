@@ -41,6 +41,33 @@ The world's first premium digital marketplace for fullstack experts and high-end
    npm run dev
    ```
 
+## Fresh Setup From Scratch
+
+If you want to re-setup the entire project pipeline:
+
+### 1. Database (Neon)
+1.  Create a new project at [Neon](https://console.neon.tech/).
+2.  Create a PostgreSQL database and copy the **Connection String**.
+3.  Update your local `.env` with `DATABASE_URL="your_connection_string"`.
+4.  Run `npx prisma db push` to initialize the tables.
+
+### 2. Version Control (GitHub)
+1.  Create a new repository on GitHub.
+2.  Re-link your local project:
+    ```bash
+    git remote remove origin
+    git remote add origin https://github.com/your-username/new-repo.git
+    git push -u origin main
+    ```
+
+### 3. Deployment (Vercel)
+1.  Import the new repository into Vercel.
+2.  Add Environment Variables:
+    - `DATABASE_URL`
+    - `NEXTAUTH_SECRET` (Run `openssl rand -base64 32` to generate)
+    - `NEXTAUTH_URL` (Your Vercel deployment URL)
+3.  Deploy!
+
 ## Deployment
 
 This project is optimized for **Vercel**. Connect your GitHub repository to Vercel and ensure the following environment variables are set:

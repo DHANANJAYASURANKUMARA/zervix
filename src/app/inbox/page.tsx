@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-interface User { id: string; name: string; image: string; }
 interface Message { id: string; senderId: string; content: string; createdAt: string; isRead: boolean; senderName?: string; senderImage?: string; }
 interface Conversation {
     id: string;
@@ -20,7 +19,6 @@ function InboxContent() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [activeConvId, setActiveConvId] = useState<string | null>(null);
     const [newMessage, setNewMessage] = useState('');
-    const [loading, setLoading] = useState(true);
     const [sending, setSending] = useState(false);
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -60,17 +58,16 @@ function InboxContent() {
     const fetchConversations = (uId: string) => {
         fetch(`/api/conversations?userId=${uId}`).then(r => r.json()).then(data => {
             if (!data.error) setConversations(data);
-        }).finally(() => setLoading(false));
+        });
     };
 
     const fetchMessages = (convId: string, background = false) => {
-        if (!background) setLoading(true);
         fetch(`/api/conversations/${convId}?userId=${userId}`).then(r => r.json()).then(data => {
             if (!data.error) {
                 setMessages(data);
                 if (!background) fetchConversations(userId); // Refresh list to clear unread
             }
-        }).finally(() => { if (!background) setLoading(false); });
+        });
     };
 
     const handleSendMessage = async (e: React.FormEvent) => {
@@ -178,7 +175,7 @@ function InboxContent() {
                                     try {
                                         // Content format: "OFFER:{"id":"...","price":100,...}"
                                         offerData = JSON.parse(m.content.substring(6));
-                                    } catch (e) { }
+                                    } catch { }
                                 }
 
                                 return (

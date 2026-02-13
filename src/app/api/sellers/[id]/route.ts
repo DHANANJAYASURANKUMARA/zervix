@@ -7,7 +7,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         const { id } = await params;
 
         // Recalculate level on fetch
-        try { await calculateSellerLevel(id); } catch (e) { }
+        try { await calculateSellerLevel(id); } catch { }
 
         // Get User with aggregate stats
         const user = await prisma.user.findUnique({

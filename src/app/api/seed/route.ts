@@ -109,7 +109,7 @@ export async function POST() {
         });
 
         // Create a conversation
-        const conv = await prisma.conversation.create({
+        await prisma.conversation.create({
             data: {
                 user1Id: buyers[0].id,
                 user2Id: sellers[0].id,

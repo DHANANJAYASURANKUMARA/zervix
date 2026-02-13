@@ -1,0 +1,329 @@
+﻿
+> zervix@0.1.0 lint
+> next lint
+
+node.exe : 
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (:String) [   
+ ], RemoteExceptio    
+n
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+./src/app/admin/page.t
+sx
+7:40  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+58:55  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/admin/gi
+gs/route.ts
+17:44  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/admin/st
+ats/route.ts
+4:27  Error: 
+'request' is defined 
+but never used.  @type
+script-eslint/no-unuse
+d-vars
+26:54  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/conversa
+tions/route.ts
+39:62  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/conversa
+tions/[id]/route.ts
+41:52  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/favorite
+s/route.ts
+33:54  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/gigs/rou
+te.ts
+43:22  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+91:22  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+123:46  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+174:47  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/gigs/[id
+]/route.ts
+35:45  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+49:38  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+53:42  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/orders/r
+oute.ts
+57:48  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/orders/[
+id]/route.ts
+45:50  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/requests
+/route.ts
+10:22  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+28:52  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/reviews/
+route.ts
+13:61  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/api/seed/rou
+te.ts
+112:15  Error: 'conv' 
+is assigned a value 
+but never used.  @type
+script-eslint/no-unuse
+d-vars
+
+./src/app/api/sellers/
+[id]/route.ts
+10:56  Error: 'e' is 
+defined but never 
+used.  @typescript-esl
+int/no-unused-vars
+57:44  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+58:47  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+87:56  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/earnings/pag
+e.tsx
+7:46  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/gigs/create/
+page.tsx
+37:49  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+41:68  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+344:36  Error: `'` 
+can be escaped with 
+`&apos;`, `&lsquo;`, 
+`&#39;`, `&rsquo;`.  r
+eact/no-unescaped-enti
+ties
+
+./src/app/gigs/[id]/pa
+ge.tsx
+165:90  Error: `'` 
+can be escaped with 
+`&apos;`, `&lsquo;`, 
+`&#39;`, `&rsquo;`.  r
+eact/no-unescaped-enti
+ties
+
+./src/app/inbox/page.t
+sx
+5:11  Error: 'User' 
+is defined but never 
+used.  @typescript-esl
+int/no-unused-vars
+23:12  Error: 
+'loading' is assigned 
+a value but never 
+used.  @typescript-esl
+int/no-unused-vars
+53:8  Warning: React 
+Hook useEffect has a 
+missing dependency: 
+'fetchMessages'. 
+Either include it or 
+remove the dependency 
+array.  react-hooks/ex
+haustive-deps
+181:46  Error: 'e' is 
+defined but never 
+used.  @typescript-esl
+int/no-unused-vars
+
+./src/app/messages/pag
+e.tsx
+17:12  Error: 
+'userName' is 
+assigned a value but 
+never used.  @typescri
+pt-eslint/no-unused-va
+rs
+28:8  Warning: React 
+Hook useEffect has a 
+missing dependency: 
+'fetchConversations'. 
+Either include it or 
+remove the dependency 
+array.  react-hooks/ex
+haustive-deps
+34:8  Warning: React 
+Hook useEffect has a 
+missing dependency: 
+'fetchMessages'. 
+Either include it or 
+remove the dependency 
+array.  react-hooks/ex
+haustive-deps
+
+./src/app/orders/[id]/
+page.tsx
+16:11  Error: 
+'router' is assigned 
+a value but never 
+used.  @typescript-esl
+int/no-unused-vars
+46:63  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+218:177  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+./src/app/page.tsx
+191:134  Error: `"` 
+can be escaped with 
+`&quot;`, `&ldquo;`, 
+`&#34;`, `&rdquo;`.  r
+eact/no-unescaped-enti
+ties
+
+./src/app/requests/bro
+wse/page.tsx
+11:12  Error: 
+'loading' is assigned 
+a value but never 
+used.  @typescript-esl
+int/no-unused-vars
+
+./src/app/requests/pag
+e.tsx
+10:12  Error: 
+'loading' is assigned 
+a value but never 
+used.  @typescript-esl
+int/no-unused-vars
+25:45  Error: 
+Unexpected any. 
+Specify a different 
+type.  @typescript-esl
+int/no-explicit-any
+
+info  - Need to 
+disable some ESLint 
+rules? Learn more 
+here: https://nextjs.o
+rg/docs/app/api-refere
+nce/config/eslint#disa
+bling-rules
