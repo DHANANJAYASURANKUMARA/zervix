@@ -76,10 +76,10 @@ export default function Header() {
                 {user ? (
                     <div ref={menuRef} style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                         {/* Favorites */}
-                        <a href="/favorites" className="nav-link" title="Favorites" style={{ fontSize: '18px' }}>♥</a>
+                        <Link href="/favorites" className="nav-link" title="Favorites" style={{ fontSize: '18px' }}>♥</Link>
 
                         {/* Messages */}
-                        <a href="/messages" className="nav-link" title="Messages" style={{ fontSize: '18px' }}>✉</a>
+                        <Link href="/messages" className="nav-link" title="Messages" style={{ fontSize: '18px' }}>✉</Link>
 
                         {/* Notifications Bell */}
                         <div style={{ position: 'relative' }}>
@@ -187,8 +187,8 @@ export default function Header() {
                     </div>
                 ) : (
                     <>
-                        <a href="/auth/login" className="nav-link">Sign In</a>
-                        <a href="/auth/signup" className="btn-premium" style={{ fontSize: '14px', padding: '8px 20px', textDecoration: 'none' }}>Join</a>
+                        <Link href="/auth/login" className="nav-link">Sign In</Link>
+                        <Link href="/auth/signup" className="btn-premium" style={{ fontSize: '14px', padding: '8px 20px', textDecoration: 'none' }}>Join</Link>
                     </>
                 )}
             </div>

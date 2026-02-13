@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 interface Gig {
     id: string;
@@ -115,7 +116,7 @@ export default function MarketplacePage() {
                 <div style={{ textAlign: 'center', padding: '60px' }}>
                     <div style={{ fontSize: '60px', marginBottom: '20px' }}>🔍</div>
                     <h3 style={{ fontSize: '24px', marginBottom: '10px' }}>No gigs found</h3>
-                    <p style={{ color: 'var(--text-muted)' }}>Try a different search or <a href="/api/seed" style={{ color: 'var(--aurora-primary)' }}>seed demo data</a>.</p>
+                    <p style={{ color: 'var(--text-muted)' }}>Try a different search or <Link href="/api/seed" style={{ color: 'var(--aurora-primary)' }}>seed demo data</Link>.</p>
                 </div>
             )}
 
@@ -123,7 +124,7 @@ export default function MarketplacePage() {
             {!loading && gigs.length > 0 && (
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '30px' }}>
                     {gigs.map((gig) => (
-                        <a key={gig.id} href={`/gigs/${gig.id}`} className="glass-card" style={{
+                        <Link key={gig.id} href={`/gigs/${gig.id}`} className="glass-card" style={{
                             overflow: 'hidden',
                             display: 'flex',
                             flexDirection: 'column',
@@ -162,10 +163,9 @@ export default function MarketplacePage() {
 
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '15px', borderTop: '1px solid var(--glass-border)' }}>
                                     <div style={{ color: 'var(--text-muted)', fontSize: '12px', fontWeight: '500' }}>STARTING AT</div>
-                                    <div style={{ fontSize: '20px', fontWeight: '800' }}>${gig.price}</div>
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             )}

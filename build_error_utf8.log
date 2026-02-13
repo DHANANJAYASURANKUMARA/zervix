@@ -1,0 +1,41 @@
+node.exe : Failed to 
+compile.
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (Failed to    
+ compile.:String)     
+[], RemoteExcepti    
+on
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+
+./src/lib/prisma.ts
+Module not found: 
+Can't resolve 
+'@prisma/client'
+
+https://nextjs.org/doc
+s/messages/module-not-
+found
+
+Import trace for 
+requested module:
+./src/app/api/earnings
+/route.ts
+
+
+> Build failed 
+because of webpack 
+errors

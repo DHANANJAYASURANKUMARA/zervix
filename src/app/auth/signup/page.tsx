@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function SignupPage() {
     const router = useRouter();
@@ -139,7 +140,7 @@ export default function SignupPage() {
                 </button>
 
                 <div style={{ textAlign: 'center', fontSize: '14px', color: 'var(--text-dim)' }}>
-                    Already have an account? <a href="/auth/login" className="aurora-text" style={{ fontWeight: '600' }}>Sign In</a>
+                    Already have an account? <Link href="/auth/login" className="aurora-text" style={{ fontWeight: '600' }}>Sign In</Link>
                 </div>
             </form>
         </div>

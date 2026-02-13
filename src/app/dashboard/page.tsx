@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface User {
     id: string;
@@ -101,13 +102,13 @@ export default function DashboardPage() {
                 <div className="glass-card" style={{ padding: '30px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
                         <h3 style={{ fontSize: '20px' }}>Recent Orders</h3>
-                        <a href="/marketplace" className="btn-premium" style={{ fontSize: '13px', padding: '8px 20px', textDecoration: 'none' }}>Browse Gigs</a>
+                        <Link href="/marketplace" className="btn-premium" style={{ fontSize: '13px', padding: '8px 20px', textDecoration: 'none' }}>Browse Gigs</Link>
                     </div>
 
                     {orders.length === 0 ? (
                         <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>
                             <div style={{ fontSize: '40px', marginBottom: '10px' }}>📭</div>
-                            No orders yet. <a href="/marketplace" style={{ color: 'var(--aurora-primary)' }}>Explore the marketplace</a>.
+                            No orders yet. <Link href="/marketplace" style={{ color: 'var(--aurora-primary)' }}>Explore the marketplace</Link>.
                         </div>
                     ) : (
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
@@ -181,9 +182,9 @@ export default function DashboardPage() {
                     <div className="glass-card" style={{ padding: '30px' }}>
                         <h3 style={{ fontSize: '18px', marginBottom: '15px' }}>Quick Actions</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                            <a href="/marketplace" className="btn-glass" style={{ textAlign: 'center', textDecoration: 'none', padding: '12px' }}>Browse Marketplace</a>
+                            <Link href="/marketplace" className="btn-glass" style={{ textAlign: 'center', textDecoration: 'none', padding: '12px' }}>Browse Marketplace</Link>
                             {user.isSeller && (
-                                <a href="/gigs/create" className="btn-premium" style={{ textAlign: 'center', textDecoration: 'none', padding: '12px' }}>Create New Gig</a>
+                                <Link href="/gigs/create" className="btn-premium" style={{ textAlign: 'center', textDecoration: 'none', padding: '12px' }}>Create New Gig</Link>
                             )}
                         </div>
                     </div>

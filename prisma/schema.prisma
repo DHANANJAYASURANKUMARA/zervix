@@ -4,132 +4,119 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://neondb_owner:npg_6qL4ueEjxrQp@ep-damp-pond-aiqhu2ma-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  password      String?
-  image         String?
-  isSeller      Boolean   @default(false)
-  role          String    @default("BUYER")
-  bio           String?   @default("")
-  skills        String?   @default("[]")
-  languages     String?   @default("[]")
-  country       String?   @default("")
-  sellerLevel   String    @default("NEW")
-  responseTime  Int?      @default(0)
-  completedOrders Int     @default(0)
-  ongoingOrders   Int     @default(0)
-  memberSince   DateTime  @default(now())
-  lastActive    DateTime  @default(now())
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  
-  gigs          Gig[]
-  orders        Order[]     @relation("BuyerOrders")
-  soldOrders    Order[]     @relation("SellerOrders")
-  reviews       Review[]
-  favorites     Favorite[]
-  notifications Notification[]
-  sentMessages     Message[]    @relation("SentMessages")
-  conversations1   Conversation[] @relation("User1Conversations")
-  conversations2   Conversation[] @relation("User2Conversations")
-  buyerRequests    BuyerRequest[] @relation("BuyerRequests")
-  customOffers     CustomOffer[]  @relation("SellerOffers")
+  id              String   @id @default(cuid())
+  name            String?
+  email           String?  @unique
+  password        String?
+  image           String?
+  isSeller        Boolean  @default(false)
+  role            String   @default("BUYER")
+  bio             String?  @default("")
+  skills          String?  @default("[]")
+  languages       String?  @default("[]")
+  country         String?  @default("")
+  sellerLevel     String   @default("NEW")
+  responseTime    Int?     @default(0)
+  completedOrders Int      @default(0)
+  ongoingOrders   Int      @default(0)
+  memberSince     DateTime @default(now())
+  lastActive      DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  gigs            Gig[]
+  orders          Order[]  @relation("BuyerOrders")
+  soldOrders      Order[]  @relation("SellerOrders")
+  reviews         Review[]
+  favorites       Favorite[]
+  notifications   Notification[]
+  sentMessages    Message[]   @relation("SentMessages")
+  conversations1  Conversation[] @relation("User1Conversations")
+  conversations2  Conversation[] @relation("User2Conversations")
+  buyerRequests   BuyerRequest[] @relation("BuyerRequests")
+  customOffers    CustomOffer[]  @relation("SellerOffers")
   customOffersReceived CustomOffer[] @relation("BuyerOffers")
-  
   @@map("users")
 }
 
 model Gig {
-  id          String   @id @default(cuid())
-  title       String
-  description String
-  category    String
-  subcategory String? @default("")
-  tags        String? @default("[]")
-  price       Float
-  location    String?
-  image       String?
-  gallery     String? @default("[]")
-  faq         String? @default("[]")
-  requirements String? @default("[]")
-  status      String  @default("ACTIVE")
-  impressions Int     @default(0)
-  clicks      Int     @default(0)
-  ordersCount Int     @default(0) @map("orders")
-  
-  sellerId    String
-  seller      User     @relation(fields: [sellerId], references: [id])
-  
-  tiers       GigTier[]
-  orders      Order[]
-  reviews     Review[]
-  favorites   Favorite[]
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  
+  id           String    @id @default(cuid())
+  title        String
+  description  String
+  category     String
+  subcategory  String?   @default("")
+  tags         String?   @default("[]")
+  price        Float
+  location     String?
+  image        String?
+  gallery      String?   @default("[]")
+  faq          String?   @default("[]")
+  requirements String?   @default("[]")
+  status       String    @default("ACTIVE")
+  impressions  Int       @default(0)
+  clicks       Int       @default(0)
+  ordersCount  Int       @default(0) @map("orders")
+  sellerId     String
+  seller       User      @relation(fields: [sellerId], references: [id])
+  tiers        GigTier[]
+  orders       Order[]
+  reviews      Review[]
+  favorites    Favorite[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
   @@map("gigs")
 }
 
 model GigTier {
-  id        String @id @default(cuid())
-  name      String
-  title     String? @default("")
+  id          String @id @default(cuid())
+  name        String
+  title       String? @default("")
   description String? @default("")
-  price     Float
-  delivery  Int
-  revisions Int    @default(1)
-  features  String
-  gigId     String
-  gig       Gig    @relation(fields: [gigId], references: [id], onDelete: Cascade)
-  
+  price       Float
+  delivery    Int
+  revisions   Int    @default(1)
+  features    String
+  gigId       String
+  gig         Gig    @relation(fields: [gigId], references: [id], onDelete: Cascade)
   @@map("gig_tiers")
 }
 
 model Order {
-  id           String   @id @default(cuid())
-  status       String   @default("PENDING")
+  id           String    @id @default(cuid())
+  status       String    @default("PENDING")
   total        Float
-  serviceFee   Float    @default(0)
+  serviceFee   Float     @default(0)
   tierId       String?
-  tierName     String?  @default("Basic")
+  tierName     String?   @default("Basic")
   deliveryDate DateTime?
-  requirements String?  @default("")
-  sellerNote   String?  @default("")
-  
+  requirements String?   @default("")
+  sellerNote   String?   @default("")
   buyerId      String
-  buyer        User     @relation("BuyerOrders", fields: [buyerId], references: [id])
-  sellerId     String   @default("")
-  seller       User     @relation("SellerOrders", fields: [sellerId], references: [id])
-  
+  buyer        User      @relation("BuyerOrders", fields: [buyerId], references: [id])
+  sellerId     String    @default("")
+  seller       User      @relation("SellerOrders", fields: [sellerId], references: [id])
   gigId        String
-  gig          Gig      @relation(fields: [gigId], references: [id])
-  
+  gig          Gig       @relation(fields: [gigId], references: [id])
   deliveries   Delivery[]
   revisions    Revision[]
   activityLogs ActivityLog[]
-  
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
   completedAt  DateTime?
-  
   @@map("orders")
 }
 
 model Delivery {
-  id          String   @id @default(cuid())
-  orderId     String
-  order       Order    @relation(fields: [orderId], references: [id])
-  message     String
-  files       String?  @default("[]")
-  status      String   @default("PENDING")
-  createdAt   DateTime @default(now())
-  
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id])
+  message   String
+  files     String?  @default("[]")
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
   @@map("deliveries")
 }
 
@@ -140,42 +127,36 @@ model Revision {
   message   String
   buyerId   String
   createdAt DateTime @default(now())
-  
   @@map("revisions")
 }
 
 model Review {
-  id        String   @id @default(cuid())
-  rating    Int
-  communicationRating Int @default(5)
-  serviceRating       Int @default(5)
-  recommendRating     Int @default(5)
-  comment   String
-  sellerResponse String? @default("")
-  orderId   String?
-  
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  gigId     String
-  gig       Gig      @relation(fields: [gigId], references: [id])
-  createdAt DateTime @default(now())
-  
+  id                  String   @id @default(cuid())
+  rating              Int
+  communicationRating Int      @default(5)
+  serviceRating       Int      @default(5)
+  recommendRating     Int      @default(5)
+  comment             String
+  sellerResponse      String?  @default("")
+  orderId             String?
+  userId              String
+  user                User     @relation(fields: [userId], references: [id])
+  gigId               String
+  gig                 Gig      @relation(fields: [gigId], references: [id])
+  createdAt           DateTime @default(now())
   @@map("reviews")
 }
 
 model Conversation {
-  id           String    @id @default(cuid())
-  user1Id      String
-  user2Id      String
-  lastMessage  String?   @default("")
+  id            String   @id @default(cuid())
+  user1Id       String
+  user2Id       String
+  lastMessage   String?  @default("")
   lastMessageAt DateTime @default(now())
-  createdAt    DateTime  @default(now())
-  
-  user1        User      @relation("User1Conversations", fields: [user1Id], references: [id]) 
-  user2        User      @relation("User2Conversations", fields: [user2Id], references: [id]) 
-  
-  messages     Message[]
-  
+  createdAt     DateTime @default(now())
+  user1         User     @relation("User1Conversations", fields: [user1Id], references: [id])
+  user2         User     @relation("User2Conversations", fields: [user2Id], references: [id])
+  messages      Message[]
   @@map("conversations")
 }
 
@@ -183,15 +164,12 @@ model Message {
   id             String       @id @default(cuid())
   conversationId String
   conversation   Conversation @relation(fields: [conversationId], references: [id])
-  
   senderId       String
   sender         User         @relation("SentMessages", fields: [senderId], references: [id])
-  
   content        String
   isRead         Boolean      @default(false)
   attachments    String?      @default("[]")
   createdAt      DateTime     @default(now())
-  
   @@map("messages")
 }
 
@@ -202,7 +180,6 @@ model Favorite {
   gigId     String
   gig       Gig      @relation(fields: [gigId], references: [id])
   createdAt DateTime @default(now())
-
   @@unique([userId, gigId])
   @@map("favorites")
 }
@@ -217,7 +194,6 @@ model Notification {
   link      String?  @default("")
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
-  
   @@map("notifications")
 }
 
@@ -231,37 +207,28 @@ model BuyerRequest {
   attachments  String?  @default("[]")
   status       String   @default("OPEN")
   offersCount  Int      @default(0)
-  
   buyerId      String
   user         User     @relation("BuyerRequests", fields: [buyerId], references: [id])
-  
   offers       CustomOffer[]
-  
   createdAt    DateTime @default(now())
-  
   @@map("buyer_requests")
 }
 
 model CustomOffer {
-  id             String       @id @default(cuid())
-  requestId      String?
-  request        BuyerRequest? @relation(fields: [requestId], references: [id])
-  
-  buyerId        String
-  user           User          @relation("BuyerOffers", fields: [buyerId], references: [id])
-
-  sellerId       String
-  seller         User          @relation("SellerOffers", fields: [sellerId], references: [id])
-
-  gigId          String?
-  description    String
-  price          Float
-  deliveryDays   Int
-  revisions      Int          @default(1)
-  status         String       @default("PENDING") 
-  
-  createdAt      DateTime     @default(now())
-  
+  id           String       @id @default(cuid())
+  requestId    String?
+  request      BuyerRequest? @relation(fields: [requestId], references: [id])
+  buyerId      String
+  user         User          @relation("BuyerOffers", fields: [buyerId], references: [id])
+  sellerId     String
+  seller       User          @relation("SellerOffers", fields: [sellerId], references: [id])
+  gigId        String?
+  description  String
+  price        Float
+  deliveryDays Int
+  revisions    Int          @default(1)
+  status       String       @default("PENDING")
+  createdAt    DateTime     @default(now())
   @@map("custom_offers")
 }
 
@@ -273,6 +240,5 @@ model ActivityLog {
   message   String
   userId    String?
   createdAt DateTime @default(now())
-  
   @@map("activity_log")
 }
