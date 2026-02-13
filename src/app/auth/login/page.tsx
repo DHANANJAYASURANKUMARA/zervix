@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function LoginPage() {
     const router = useRouter();
@@ -123,7 +124,7 @@ export default function LoginPage() {
                 </button>
 
                 <div style={{ textAlign: 'center', fontSize: '14px', color: 'var(--text-dim)' }}>
-                    Don&apos;t have an account? <a href="/auth/signup" className="aurora-text" style={{ fontWeight: '600' }}>Create Account</a>
+                    Don&apos;t have an account? <Link href="/auth/signup" className="aurora-text" style={{ fontWeight: '600' }}>Create Account</Link>
                 </div>
             </form>
         </div>

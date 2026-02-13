@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 interface Notification { id: string; type: string; title: string; message: string; link: string; isRead: number; createdAt: string; }
 
@@ -64,13 +65,13 @@ export default function Header() {
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
             boxSizing: 'border-box', zIndex: 1000, border: '1px solid var(--glass-border)'
         }}>
-            <a href="/" style={{ fontSize: '24px', fontWeight: '800', letterSpacing: '-1px', textDecoration: 'none', color: 'inherit' }}>
+            <Link href="/" style={{ fontSize: '24px', fontWeight: '800', letterSpacing: '-1px', textDecoration: 'none', color: 'inherit' }}>
                 ZER<span className="aurora-text">VIX</span>
-            </a>
+            </Link>
 
             <div style={{ display: 'flex', gap: '24px', alignItems: 'center', fontWeight: '500', color: 'var(--text-muted)' }}>
-                <a href="/marketplace" className="nav-link">Explore</a>
-                <a href="/requests" className="nav-link">Requests</a>
+                <Link href="/marketplace" className="nav-link">Explore</Link>
+                <Link href="/requests" className="nav-link">Requests</Link>
 
                 {user ? (
                     <div ref={menuRef} style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
@@ -112,14 +113,14 @@ export default function Header() {
                                         {notifications.length === 0 ? (
                                             <div style={{ padding: '30px', textAlign: 'center', color: 'var(--text-dim)', fontSize: '14px' }}>No notifications</div>
                                         ) : notifications.slice(0, 8).map(n => (
-                                            <a key={n.id} href={n.link || '#'} style={{
+                                            <Link key={n.id} href={n.link || '#'} style={{
                                                 display: 'block', padding: '12px 18px', borderBottom: '1px solid var(--glass-border)',
                                                 textDecoration: 'none', color: 'inherit',
                                                 background: n.isRead ? 'transparent' : 'rgba(99,102,241,0.05)',
                                             }}>
                                                 <div style={{ fontWeight: n.isRead ? '400' : '600', fontSize: '13px', marginBottom: '3px' }}>{n.title}</div>
                                                 <div style={{ fontSize: '12px', color: 'var(--text-dim)' }}>{n.message}</div>
-                                            </a>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>
@@ -164,14 +165,14 @@ export default function Header() {
                                         { label: 'Messages', href: '/messages', icon: '✉️' },
                                         { label: 'Settings', href: '/dashboard', icon: '⚙️' },
                                     ].map(item => (
-                                        <a key={item.label} href={item.href} style={{
+                                        <Link key={item.label} href={item.href} style={{
                                             display: 'flex', alignItems: 'center', gap: '10px',
                                             padding: '11px 18px', fontSize: '14px', color: 'var(--text-muted)',
                                             textDecoration: 'none', borderBottom: '1px solid var(--glass-border)',
                                             transition: 'background 0.2s'
                                         }}>
                                             <span>{item.icon}</span> {item.label}
-                                        </a>
+                                        </Link>
                                     ))}
                                     <button onClick={logout} style={{
                                         width: '100%', padding: '12px 18px', background: 'none', border: 'none',
